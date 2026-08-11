@@ -1,7 +1,8 @@
+"use client";
+
 import { PROJECTS_DATA } from "@/data/projects";
 
 export default function ProjectsShowcase() {
-  // Duplikasi project data agar cukup mengisi barisan marquee
   const items = [
     ...PROJECTS_DATA,
     ...PROJECTS_DATA,
@@ -14,17 +15,15 @@ export default function ProjectsShowcase() {
       id="projects"
       className="bg-[#08080a] py-16 text-white w-full overflow-hidden"
     >
-      {/* Header Rata Kiri dengan Container Rapi */}
       <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-10 text-left">
         <span className="font-profa text-xs sm:text-sm font-bold tracking-widest text-amber-500 uppercase block">
-          BUILT BY PASSION
+          PROJECTS
         </span>
-        <h2 className="font-profa text-2xl sm:text-4xl font-extrabold tracking-tight mt-1 text-white">
-          Projects we're proud of.
+        <h2 className="font-profa text-2xl sm:text-4xl font-extrabold tracking-tight mt-1 text-white uppercase">
+          Featured Works
         </h2>
       </div>
 
-      {/* Marquee Full-Width dengan Masking Gradient Samping */}
       <div className="relative w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         {/* Track 1 */}
         <div className="animate-marquee-track flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
@@ -38,13 +37,12 @@ export default function ProjectsShowcase() {
                 alt={project.title}
                 className="w-full h-full object-cover"
               />
-              {/* Overlay subtle hover */}
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
             </div>
           ))}
         </div>
 
-        {/* Track 2 (Seamless Mirroring) */}
+        {/* Track 2 */}
         <div
           className="animate-marquee-track flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0"
           aria-hidden="true"
@@ -59,7 +57,6 @@ export default function ProjectsShowcase() {
                 alt={project.title}
                 className="w-full h-full object-cover"
               />
-              {/* Overlay subtle hover */}
               <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
             </div>
           ))}

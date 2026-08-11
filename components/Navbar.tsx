@@ -15,10 +15,11 @@ export default function Navbar() {
     width: 0,
     opacity: 0,
   });
-  const navRef = useRef<HTMLNavElement>(null);
+
+  // FIXED: HTMLNavElement diganti ke HTMLElement
+  const navRef = useRef<HTMLElement>(null);
   const itemsRef = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
 
-  // Menu dipangkas khusus untuk Indie Studio / Portfolio Personal
   const navItems = [
     { name: "HOME", href: "/" },
     { name: "PROJECTS", href: "#projects" },
