@@ -24,12 +24,12 @@ export default function FeaturedProjects({ projects = [] }: FeaturedProjectsProp
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects?.map((project) => (
+          {(projects || []).map((project) => (
             <div key={project.id} className="border border-white/10 p-4 rounded-lg bg-black/40">
               <h3 className="text-xl font-bold">{project.title}</h3>
               <p className="text-sm text-gray-400 mt-2">{project.description}</p>
               
-              {/* Optional Chaining & Default Array Biar Gak Error TS18048 */}
+              {/* FIXED: Pake (project.tags || []) biar TypeScript gak komplain */}
               <div className="flex flex-wrap gap-2 mt-4">
                 {(project.tags || []).map((tag, i) => (
                   <span key={i} className="text-xs bg-white/10 px-2 py-1 rounded">
