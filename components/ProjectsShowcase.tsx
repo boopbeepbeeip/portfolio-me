@@ -1,63 +1,42 @@
 "use client";
 
-import { PROJECTS_DATA } from "@/data/projects";
+import React from "react";
 
-export default function ProjectsShowcase() {
-  const items = [
-    ...PROJECTS_DATA,
-    ...PROJECTS_DATA,
-    ...PROJECTS_DATA,
-    ...PROJECTS_DATA,
-  ];
+interface Project {
+  id: string;
+  title: string;
+  description?: string;
+  imageUrl?: string;
+  tags?: string[];
+  link?: string;
+}
 
+interface FeaturedProjectsProps {
+  projects?: Project[];
+}
+
+export default function FeaturedProjects({ projects = [] }: FeaturedProjectsProps) {
   return (
-    <section
-      id="projects"
-      className="bg-[#08080a] py-16 text-white w-full overflow-hidden"
-    >
-      <div className="w-full max-w-7xl mx-auto px-6 md:px-12 mb-10 text-left">
-        <span className="font-profa text-xs sm:text-sm font-bold tracking-widest text-amber-500 uppercase block">
-          PROJECTS
-        </span>
-        <h2 className="font-profa text-2xl sm:text-4xl font-extrabold tracking-tight mt-1 text-white uppercase">
-          Featured Works
+    <section className="py-12 bg-[#08080a] text-white">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <h2 className="text-2xl font-bold uppercase mb-6 text-amber-500">
+          Featured Projects
         </h2>
-      </div>
-
-      <div className="relative w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        {/* Track 1 */}
-        <div className="animate-marquee-track flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0">
-          {items.map((project, idx) => (
-            <div
-              key={`p1-${project.id}-${idx}`}
-              className="group relative w-48 sm:w-64 md:w-72 h-[380px] sm:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#111116] shrink-0 transition-transform duration-300 hover:scale-[1.02]"
-            >
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
-            </div>
-          ))}
-        </div>
-
-        {/* Track 2 */}
-        <div
-          className="animate-marquee-track flex gap-4 sm:gap-6 pr-4 sm:pr-6 shrink-0"
-          aria-hidden="true"
-        >
-          {items.map((project, idx) => (
-            <div
-              key={`p2-${project.id}-${idx}`}
-              className="group relative w-48 sm:w-64 md:w-72 h-[380px] sm:h-[480px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#111116] shrink-0 transition-transform duration-300 hover:scale-[1.02]"
-            >
-              <img
-                src={project.imageUrl}
-                alt={project.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-300" />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects?.map((project) => (
+            <div key={project.id} className="border border-white/10 p-4 rounded-lg bg-black/40">
+              <h3 className="text-xl font-bold">{project.title}</h3>
+              <p className="text-sm text-gray-400 mt-2">{project.description}</p>
+              
+              {/* Optional Chaining & Default Array Biar Gak Error TS18048 */}
+              <div className="flex flex-wrap gap-2 mt-4">
+                {(project.tags || []).map((tag, i) => (
+                  <span key={i} className="text-xs bg-white/10 px-2 py-1 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
